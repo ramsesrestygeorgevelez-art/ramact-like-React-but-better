@@ -7,8 +7,9 @@
 ```javascript
 import { Elements } from "ramact/elements"
 
-Elements.create("Text" {
+const text = Elements.create("Text" {
    ["Properties"]: {
       ["Size"]: "10"
    }
 })
+text.addFromHTML()
