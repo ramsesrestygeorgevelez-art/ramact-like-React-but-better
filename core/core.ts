@@ -53,6 +53,9 @@ export class Clock {
 }
 
 export class Ramact {
+  attachWidget(widget: WidgetUI) {
+      throw new Error("Method not implemented.");
+  }
   readonly ctx: RamactContext;
   private disposers: Dispose[] = [];
 
@@ -81,12 +84,14 @@ export class WidgetUI extends HTMLElement{
     widgetSize: Vector
     resizeable: boolean
     element: any;
+    value: HTMLSelectElement["value"];
     constructor(name: string, widgetSize: Vector){
       super();
       this.name = name,
       this.widgetSize = widgetSize
       this.resizeable = false
       this.widget = null
+      this.value = ''
     }
     setResizeable(trueorfalse: boolean, type: any, _callback: any)  {
       if (trueorfalse === true){

@@ -1,5 +1,5 @@
-import { Camera } from "../video/camera/screenshot";
-import { VideoPlayer } from "../video/videoPlay";
+import { Camera } from "../core/tools/video/camera/screenshot";
+import { VideoPlayer } from "../core/tools/video/videoPlay";
 import { Addon, Dispose, RamactContext } from "./core";
 export const Media: Addon = {
     name: "media",

@@ -4,3 +4,6 @@ export function addElementListener(element: WidgetUI, name: string, callback: Ev
     
     element.addEventListener(name, callback)
 }
+export function removeElementListener(element: WidgetUI, name: Event){
+    element.dispatchEvent(name)
+}
