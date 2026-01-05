@@ -4,10 +4,12 @@ import { Ramact, WidgetUI } from "./core/core";
 import { Animation } from "./core/tools/animationex";
 import { RamactInputex } from "./core/tools/ramact_inputex";
 import { RamactPrompt } from "./core/tools/ramact_prompt";
+import { RamactStyleSheet } from "./core/tools/stylesheet";
 import { RamactAnimationEditorWidget } from "./core/widgets/RamactAnimationEditor";
 import { RamactImageEditorWidget } from "./core/widgets/RamactImageEditor";
 import { RamactPositionEditorWidget } from "./core/widgets/RamactPositionEditor";
-
+import { Search } from "./core/widgets/Searchbar";
+import { widget } from "./core/widgets/SearchSpellCorrectAuto";
 /**
  * Registry of available widgets in the system.
  */
@@ -15,6 +17,8 @@ export interface RamactWidgetRegistry {
   AnimationEditor: typeof RamactAnimationEditorWidget;
   ImageEditor: typeof RamactImageEditorWidget;
   PositionEditor: typeof RamactPositionEditorWidget;
+  SearchbarAuto: typeof widget;
+  Searchbar: typeof Search
   [key: string]: WidgetUI; // extensible for future widgets
 }
 
@@ -44,4 +48,5 @@ export interface RamactSystemInterface {
   showPrompt(): void;
   initInput(): void;
   bootstrap(): void;
+  addStyleSheetToWidget(styles: RamactStyleSheet, widget: WidgetUI): void
 }

@@ -78,6 +78,9 @@ export class Ramact {
   }
 }
 import { Vector } from "./types"
+/**
+ * The Widget ui that creates an HTMLElement.
+ */
 export class WidgetUI extends HTMLElement{
     name: string
     widget: any
