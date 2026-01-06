@@ -16,6 +16,14 @@
     h1, h2, h3 {
       color: #6ae3ff;
     }
+    h2 {
+      margin-top: 32px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 6px;
+    }
+    h3 {
+      margin-top: 20px;
+    }
     .CodeMirror {
       height: auto;
       border: 1px solid #333;
@@ -26,11 +34,25 @@
     textarea {
       display: none;
     }
+    .desc {
+      color: #a9b0c0;
+      margin: 6px 0 12px;
+    }
+    ul {
+      margin: 0 0 16px;
+    }
+    pre {
+      background: #0b0d12;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #333;
+      overflow-x: auto;
+    }
   </style>
 </head>
 <body>
   <h1>Ramact Ecosystem Documentation</h1>
-  <p>Ramact is a modular, plugin‑driven developer environment designed for extensibility, clarity, and maintainability.</p>
+  <p class="desc">Ramact is a modular, plugin‑driven developer environment designed for extensibility, clarity, and maintainability.</p>
 
   <h2>✨ Features</h2>
   <ul>
@@ -62,6 +84,7 @@ API.md
 
   <h2>📦 Core</h2>
   <h3>Ramact</h3>
+  <p class="desc">The central runtime that orchestrates widgets and tools.</p>
   <textarea id="code1">
 interface Ramact {
   init(): void;
@@ -72,6 +95,7 @@ interface Ramact {
   </textarea>
 
   <h3>WidgetUI</h3>
+  <p class="desc">Base interface for all widgets in the system.</p>
   <textarea id="code2">
 interface WidgetUI {
   name: string;
@@ -82,6 +106,7 @@ interface WidgetUI {
 
   <h2>🛠️ Tools</h2>
   <h3>Animation</h3>
+  <p class="desc">Provides playback controls and easing configuration for animations.</p>
   <textarea id="code3">
 interface Animation {
   play(): void;
@@ -93,6 +118,7 @@ interface Animation {
   </textarea>
 
   <h3>RamactInputex</h3>
+  <p class="desc">Handles input listening and value retrieval.</p>
   <textarea id="code4">
 interface RamactInputex {
   listen(): void;
@@ -102,6 +128,7 @@ interface RamactInputex {
   </textarea>
 
   <h3>RamactPrompt</h3>
+  <p class="desc">Prompt system for alerts, confirmations, and dialogs.</p>
   <textarea id="code5">
 interface RamactPrompt {
   type: "Alert" | "Confirm" | "Dialog";
@@ -112,6 +139,7 @@ interface RamactPrompt {
   </textarea>
 
   <h3>RamactFeedbackex</h3>
+  <p class="desc">Collects and manages feedback entries.</p>
   <textarea id="code6">
 interface FeedbackEntry {
   id: string;
@@ -132,6 +160,7 @@ interface RamactFeedbackex {
 
   <h2>🎨 Widgets</h2>
   <h3>RamactAnimationEditorWidget</h3>
+  <p class="desc">Widget for configuring and editing animations.</p>
   <textarea id="code7">
 interface RamactAnimationEditorWidget extends WidgetUI {
   configureAnimation(animation: Animation): void;
@@ -139,6 +168,7 @@ interface RamactAnimationEditorWidget extends WidgetUI {
   </textarea>
 
   <h3>RamactImageEditorWidget</h3>
+  <p class="desc">Widget for loading and applying filters to images.</p>
   <textarea id="code8">
 interface RamactImageEditorWidget extends WidgetUI {
   loadImage(src: string): void;
@@ -147,6 +177,7 @@ interface RamactImageEditorWidget extends WidgetUI {
   </textarea>
 
   <h3>RamactPositionEditorWidget</h3>
+  <p class="desc">Widget for setting and retrieving positions.</p>
   <textarea id="code9">
 interface RamactPositionEditorWidget extends WidgetUI {
   setPosition(x: number, y: number): void;
@@ -155,6 +186,7 @@ interface RamactPositionEditorWidget extends WidgetUI {
   </textarea>
 
   <h2>🔧 System Interface</h2>
+  <p class="desc">Defines the full system contract for core, widgets, and tools.</p>
   <textarea id="code10">
 interface RamactSystemInterface {
   core: Ramact;
@@ -173,13 +205,18 @@ interface RamactSystemInterface {
 
   <h2>🚀 Usage Examples</h2>
   <h3>Core + Widgets</h3>
+  <p class="desc">Initialize the core and attach a widget.</p>
   <textarea id="code11">
 import { RamactAnimationEditorWidget } from "./core/widgets/RamactAnimationEditor";
 
-     // Add functionality
+const core = createRamact();
+core.init();
+core.attachWidget(RamactAnimationEditorWidget);
+core.destroy();
   </textarea>
 
   <h3>Feedback System</h3>
+  <p class="desc">Collect feedback and export entries.</p>
   <textarea id="code12">
 import { createFeedbackex } from "./core/tools/ramact_feedbackex";
 
@@ -195,6 +232,7 @@ console.log(feedback.exportJSON());
   <!-- CodeMirror 5 JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css"></script>
 
   <script>
     function initCodeMirror(id) {
