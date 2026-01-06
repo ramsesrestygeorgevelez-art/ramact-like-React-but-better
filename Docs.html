@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ramact Ecosystem Documentation</title>
+  <!-- CodeMirror 5 CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0f1115;
+      color: #e6e6e6;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #6ae3ff;
+    }
+    .CodeMirror {
+      height: auto;
+      border: 1px solid #333;
+      border-radius: 6px;
+      margin: 12px 0;
+      background: #0b0d12;
+    }
+    textarea {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ramact Ecosystem Documentation</h1>
+  <p>Ramact is a modular, plugin‑driven developer environment designed for extensibility, clarity, and maintainability.</p>
+
+  <h2>✨ Features</h2>
+  <ul>
+    <li>Core runtime (<code>Ramact</code>) for orchestrating widgets and tools</li>
+    <li>Widget system for editors and UI extensions</li>
+    <li>Tool registry for input, prompts, animations, and feedback</li>
+    <li>Interface‑driven design (no classes, no constants in contracts)</li>
+    <li>Auto‑wired registries for easy extension</li>
+    <li>HTTP‑style feedback collection via <code>RamactFeedbackex</code></li>
+  </ul>
+
+  <h2>📂 Project Structure</h2>
+  <pre>
+core/
+  core.ts
+tools/
+  animationex.ts
+  ramact_inputex.ts
+  ramact_prompt.ts
+  ramact_feedbackex.ts
+widgets/
+  RamactAnimationEditor.ts
+  RamactImageEditor.ts
+  RamactPositionEditor.ts
+  RamactSystem.ts
+README.md
+API.md
+  </pre>
+
+  <h2>📦 Core</h2>
+  <h3>Ramact</h3>
+  <textarea id="code1">
+interface Ramact {
+  init(): void;
+  attachWidget(widget: WidgetUI): void;
+  detachWidget(widget: WidgetUI): void;
+  destroy(): void;
+}
+  </textarea>
+
+  <h3>WidgetUI</h3>
+  <textarea id="code2">
+interface WidgetUI {
+  name: string;
+  render(): void;
+  destroy(): void;
+}
+  </textarea>
+
+  <h2>🛠️ Tools</h2>
+  <h3>Animation</h3>
+  <textarea id="code3">
+interface Animation {
+  play(): void;
+  pause(): void;
+  stop(): void;
+  setDuration(ms: number): void;
+  setEasing(type: string): void;
+}
+  </textarea>
+
+  <h3>RamactInputex</h3>
+  <textarea id="code4">
+interface RamactInputex {
+  listen(): void;
+  stop(): void;
+  getValue(): string;
+}
+  </textarea>
+
+  <h3>RamactPrompt</h3>
+  <textarea id="code5">
+interface RamactPrompt {
+  type: "Alert" | "Confirm" | "Dialog";
+  title: string;
+  render(): void;
+  close(): void;
+}
+  </textarea>
+
+  <h3>RamactFeedbackex</h3>
+  <textarea id="code6">
+interface FeedbackEntry {
+  id: string;
+  message: string;
+  type: "bug" | "feature" | "general";
+  timestamp: number;
+}
+
+interface RamactFeedbackex {
+  entries: FeedbackEntry[];
+
+  collect(message: string, type?: FeedbackEntry["type"]): Promise<FeedbackEntry>;
+  list(): FeedbackEntry[];
+  clear(): void;
+  exportJSON(): string;
+}
+  </textarea>
+
+  <h2>🎨 Widgets</h2>
+  <h3>RamactAnimationEditorWidget</h3>
+  <textarea id="code7">
+interface RamactAnimationEditorWidget extends WidgetUI {
+  configureAnimation(animation: Animation): void;
+}
+  </textarea>
+
+  <h3>RamactImageEditorWidget</h3>
+  <textarea id="code8">
+interface RamactImageEditorWidget extends WidgetUI {
+  loadImage(src: string): void;
+  applyFilter(filter: string): void;
+}
+  </textarea>
+
+  <h3>RamactPositionEditorWidget</h3>
+  <textarea id="code9">
+interface RamactPositionEditorWidget extends WidgetUI {
+  setPosition(x: number, y: number): void;
+  getPosition(): { x: number; y: number };
+}
+  </textarea>
+
+  <h2>🔧 System Interface</h2>
+  <textarea id="code10">
+interface RamactSystemInterface {
+  core: Ramact;
+  widgets: RamactWidgetRegistry;
+  tools: RamactToolRegistry;
+
+  registerWidget(name: string, widget: WidgetUI): void;
+  addAnimation(animation: Animation): void;
+  runAnimations(): void;
+  showPrompt(): void;
+  initInput(): void;
+  collectFeedback(): void;
+  bootstrap(): void;
+}
+  </textarea>
+
+  <h2>🚀 Usage Examples</h2>
+  <h3>Core + Widgets</h3>
+  <textarea id="code11">
+import { RamactAnimationEditorWidget } from "./core/widgets/RamactAnimationEditor";
+
+     // Add functionality
+  </textarea>
+
+  <h3>Feedback System</h3>
+  <textarea id="code12">
+import { createFeedbackex } from "./core/tools/ramact_feedbackex";
+
+const feedback = createFeedbackex();
+
+await feedback.collect("UI feels sluggish", "bug");
+await feedback.collect("Add dark mode", "feature");
+
+console.log(feedback.list());
+console.log(feedback.exportJSON());
+  </textarea>
+
+  <!-- CodeMirror 5 JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+
+  <script>
+    function initCodeMirror(id) {
+      CodeMirror.fromTextArea(document.getElementById(id), {
+        mode: "javascript",
+        theme: "dracula",
+        lineNumbers: true,
+        readOnly: true
+      });
+    }
+    [
+      "code1","code2","code3","code4","code5","code6",
+      "code7","code8","code9","code10","code11","code12"
+    ].forEach(initCodeMirror);
+  </script>
+</body>
+</html>
