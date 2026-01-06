@@ -1,37 +1,7 @@
 {
-  "compilerOptions": {
-    /* Language and environment */
-    "target": "ES2020",
-    "lib": ["ES2020", "DOM"],
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "jsx": "react-jsx",
-
-    /* Strictness and safety */
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-
-    /* Output and structure */
-    "outDir": "./dist",
-    "rootDir": "./",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-
-    /* Path aliases for clean imports */
-    "baseUrl": "./",
-    "paths": {
-      "@core/*": ["core/*"],
-      "@tools/*": ["tools/*"],
-      "@widgets/*": ["widgets/*"],
-      "@events/*": ["events/*"],
-      "@video/*": ["video/*"],
-      "@testing/*": ["testing/*"]
+    "compilerOptions": {
+        "target": "es5", // You can keep your existing target (e.g., "es5")
+        "lib": ["dom", "es2015"] // Add "es2015" or "es6" here
     }
-  },
-  "include": ["./**/*.ts", "./**/*.tsx"],
-  "exclude": ["node_modules", "dist"]
+    
 }

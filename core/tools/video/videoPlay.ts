@@ -51,6 +51,8 @@ export class Video {
 
     this.mediaRecorder.onstop = () => {
       // Logic to process the chunks when recording stops will be in saveToFile
+
+      this.saveToFile(".mp4")
     };
 
     this.mediaRecorder.start();
